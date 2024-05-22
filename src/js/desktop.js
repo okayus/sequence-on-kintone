@@ -34,7 +34,9 @@
     const messages = record[messageTable].value.map((message) => {
       const from = message.value['誰が'].value;
       const to = message.value['誰に'].value;
-      const text = message.value['何をする'].value;
+      // 改行をbrに変換してtextに格納
+      // const text = message.value['何をする'].value;
+      const text = message.value['何をする'].value.replace(/\n/g, '<br>');
       // toがない場合はNoteとして表示
       if (to === '') {
         return `Note over ${from}: ${text}`;
