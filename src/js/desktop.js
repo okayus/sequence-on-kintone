@@ -19,11 +19,16 @@
 
   function generateSequenceMermaid(event) {
     const record = event.record;
-    const participants = record[participantTable].value.map((participant) => participant.value['対象者'].value);
+    const participants = record[participantTable].value.map((participant) => {
+      const result = {type: '', name: ''};
+      result.type = participant.value['アイコンタイプ'].value;
+      result.name = participant.value['対象者'].value;
+      return result;
+    });
     // mermaid記法に変換
     let mermaidText = 'sequenceDiagram\n';
     participants.forEach((participant) => {
-      mermaidText += `participant ${participant}\n`;
+      mermaidText += `${participant.type} ${participant.name}\n`;
     });
     // メッセージの追加
     const messages = record[messageTable].value.map((message) => {
