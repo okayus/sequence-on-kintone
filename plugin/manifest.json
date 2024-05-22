@@ -4,6 +4,7 @@
   "type": "APP",
   "desktop": {
     "js": [
+      "js/mermaid.min.js",
       "js/desktop.js"
     ],
     "css": [
